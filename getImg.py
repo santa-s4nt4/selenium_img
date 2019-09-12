@@ -3,8 +3,12 @@ from selenium import webdriver
 import io
 from urllib import request
 
+print('type an instagram id') 
+instagram = input('>> ')
+print('id : ' + instagram)
+
 browser = webdriver.Chrome(executable_path='C:\\Users\\santa\\chromedriver_win32\\chromedriver.exe')
-browser.get('https://www.instagram.com/morinana_official/')
+browser.get('https://www.instagram.com/' + instagram)
 elems = browser.find_elements_by_class_name('KL4Bh')
 for index, elem in enumerate(elems):
         elem = elem.find_element_by_tag_name('img')
