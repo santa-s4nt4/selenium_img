@@ -10,7 +10,6 @@ pillow = "*"
 selenium = "*"
 urllib3 = "*"
 beautifulsoup4 = "*"
-chromedriver-binary = "*"
 
 [requires]
 python_version = "3.7"

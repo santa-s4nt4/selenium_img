@@ -25,13 +25,6 @@
             "index": "pypi",
             "version": "==4.8.0"
         },
-        "chromedriver-binary": {
-            "hashes": [
-                "sha256:7953486a3609cd0d9984db1734a921b65fe98f788ff962762b63af8980c53f5e"
-            ],
-            "index": "pypi",
-            "version": "==77.0.3865.40.0"
-        },
         "pillow": {
             "hashes": [
                 "sha256:0804f77cb1e9b6dbd37601cee11283bba39a8d44b9ddb053400c58e0c0d7d9de",

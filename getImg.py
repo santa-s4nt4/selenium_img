@@ -2,9 +2,8 @@ from PIL import Image
 from selenium import webdriver
 import io
 from urllib import request
-#import chromedriver_binary
 
-browser = webdriver.Chrome()
+browser = webdriver.Chrome(executable_path='C:\\Users\\santa\\chromedriver_win32\\chromedriver.exe')
 browser.get('https://santa-sukitoku.github.io/santa-portfolio/')
 elem = browser.find_element_by_class_name('module')
 elem = elem.find_element_by_tag_name('img')
