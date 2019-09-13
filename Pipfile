@@ -10,6 +10,10 @@ pillow = "*"
 selenium = "*"
 urllib3 = "*"
 beautifulsoup4 = "*"
+flake8 = "*"
+black = "==18.3a0"
+numpy = "*"
+opencv-python = "*"
 
 [requires]
 python_version = "3.7"
