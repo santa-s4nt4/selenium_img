@@ -4,6 +4,7 @@ import io
 from urllib import request
 
 import cv2
+import numpy as np
 
 print('type an instagram id') 
 instagram = input('>> ')
@@ -31,7 +32,7 @@ face = cascade.detectMultiScale(imgCut_g)
 
 print(face)
 
-for x, y, w, h in face:
-        face_cut = img[y: y + h, x: x + w]
+for x,y,w,h in face:
+    face_cut = imgCut[y:y+h, x:x+w]
         
-cv2.imread('imgCut.jpg', face_cut)
+cv2.imwrite('./imgCut/imgCut.jpg', face_cut)
