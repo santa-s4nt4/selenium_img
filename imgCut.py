@@ -5,6 +5,7 @@ from urllib import request
 
 import cv2
 import numpy as np
+import glob
 
 print('type an instagram id') 
 instagram = input('>> ')
@@ -23,16 +24,23 @@ for index, elem in enumerate(elems):
 HAAR_FILE = "C:\\Users\\santa\\.virtualenvs\\selenium_img--xVpDsKx\\Lib\\site-packages\\cv2\\data\\haarcascade_frontalface_default.xml"
 cascade = cv2.CascadeClassifier(HAAR_FILE)
 
+"""
 image_picture = "./img/img0.jpg"
 imgCut = cv2.imread(image_picture)
 
 imgCut_g = cv2.imread(image_picture, 0)
+"""
 
-face = cascade.detectMultiScale(imgCut_g)
-
-print(face)
-
-for x,y,w,h in face:
-    face_cut = imgCut[y:y+h, x:x+w]
+image_pictures = glob.glob('./img/*')
+for f in image_pictures:
+        imgCut = cv2.imread(f)
+        imgCut_g = cv2.imread(f, cv2.IMREAD_GRAYSCALE)
         
-cv2.imwrite('./imgCut/imgCut.jpg', face_cut)
+        face = cascade.detectMultiScale(imgCut_g)
+        
+        print(face)
+        
+        for x, y, w, h in face:
+                face_cut = imgCut[y:y+h, x:x+w]
+        
+        cv2.imwrite('./img/img{}.jpg'.format(index), face_cut)
