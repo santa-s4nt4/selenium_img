@@ -4,7 +4,6 @@ import io
 from urllib import request
 
 import cv2
-print(cv2.__version__)
 
 print('type an instagram id') 
 instagram = input('>> ')
@@ -18,4 +17,21 @@ for index, elem in enumerate(elems):
         url = elem.get_attribute('src')
         f = io.BytesIO(request.urlopen(url).read())
         img = Image.open(f)
-        img.save('./imgCut/img{}.jpg'.format(index))
+        img.save('./img/img{}.jpg'.format(index))
+
+HAAR_FILE = "C:\\Users\\santa\\.virtualenvs\\selenium_img--xVpDsKx\\Lib\\site-packages\\cv2\\data\\haarcascade_frontalface_default.xml"
+cascade = cv2.CascadeClassifier(HAAR_FILE)
+
+image_picture = "./img/img0.jpg"
+imgCut = cv2.imread(image_picture)
+
+imgCut_g = cv2.imread(image_picture, 0)
+
+face = cascade.detectMultiScale(imgCut_g)
+
+print(face)
+
+for x, y, w, h in face:
+        face_cut = img[y: y + h, x: x + w]
+        
+cv2.imread('imgCut.jpg', face_cut)
