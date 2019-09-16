@@ -32,15 +32,21 @@ imgCut_g = cv2.imread(image_picture, 0)
 """
 
 image_pictures = glob.glob('./img/*')
+
+def cutting(faceCutting, imgCutting):
+        for x, y, w, h in faceCutting:
+                face_cut = imgCutting[y: y + h, x: x + w]
+                saveImg(face_cut)
+
+def saveImg(save):
+        cv2.imwrite('./imgCut/imgCut{}.jpg'.format(index), save)
+
 for f in image_pictures:
         imgCut = cv2.imread(f)
         imgCut_g = cv2.imread(f, cv2.IMREAD_GRAYSCALE)
-        
+                
         face = cascade.detectMultiScale(imgCut_g)
+                
+        cutting(face, imgCut)
         
         print(face)
-        
-        for x, y, w, h in face:
-                face_cut = imgCut[y:y+h, x:x+w]
-        
-        cv2.imwrite('./img/img{}.jpg'.format(index), face_cut)
