@@ -6,6 +6,7 @@ from urllib import request
 import cv2
 import numpy as np
 import glob
+import sys, os
 
 print('type an instagram id') 
 instagram = input('>> ')
@@ -21,32 +22,32 @@ for index, elem in enumerate(elems):
         img = Image.open(f)
         img.save('./img/img{}.jpg'.format(index))
 
-HAAR_FILE = "C:\\Users\\santa\\.virtualenvs\\selenium_img--xVpDsKx\\Lib\\site-packages\\cv2\\data\\haarcascade_frontalface_default.xml"
-cascade = cv2.CascadeClassifier(HAAR_FILE)
+in_jpg = "./img/"
+out_jpg = "./imgCut/"
 
-"""
-image_picture = "./img/img0.jpg"
-imgCut = cv2.imread(image_picture)
+def get_file(dir_path):
+        filenames = os.listdir(dir_path)
+        return filenames
 
-imgCut_g = cv2.imread(image_picture, 0)
-"""
+pic = get_file(in_jpg)
 
-image_pictures = glob.glob('./img/*')
-
-def cutting(faceCutting, imgCutting):
-        for x, y, w, h in faceCutting:
-                face_cut = imgCutting[y: y + h, x: x + w]
-                saveImg(face_cut)
-
-def saveImg(save):
-        cv2.imwrite('./imgCut/imgCut{}.jpg'.format(index), save)
-
-for f in image_pictures:
-        imgCut = cv2.imread(f)
-        imgCut_g = cv2.imread(f, cv2.IMREAD_GRAYSCALE)
-                
-        face = cascade.detectMultiScale(imgCut_g)
-                
-        cutting(face, imgCut)
+for i in pic:
+        image_gs = cv2.imread(in_jpg + i)
         
-        print(face)
+        cascade = cv2.CascadeClassifier("C:\\Users\\santa\\.virtualenvs\\selenium_img--xVpDsKx\\Lib\\site-packages\\cv2\\data\\haarcascade_frontalface_default.xml")
+        
+        face_list = cascade.detectMultiScale(image_gs, scaleFactor=1.1, minNeighbors=1, minSize=(1, 1))
+        
+        no = 1;
+
+        for rect in face_list:
+                x = rect[0]
+                y = rect[1]
+                width = rect[2]
+                height = rect[3]
+                dst = image_gs[y: y + height, x: x + width]
+                save_path = out_jpg + '/' + 'out_(' + str(i) + ')' + str(no) + '.jpg'
+                
+                a = cv2.imwrite(save_path, dst)
+                print(no)
+                no += 1
