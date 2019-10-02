@@ -16,6 +16,10 @@ numpy = "*"
 opencv-python = "*"
 matplotlib = "*"
 scipy = "*"
+autopep8 = "*"
+requests = "*"
+requests-oauthlib = "*"
+setting = "*"
 
 [requires]
 python_version = "3.7"
