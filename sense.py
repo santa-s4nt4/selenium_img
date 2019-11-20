@@ -12,6 +12,6 @@ for index, elem in enumerate(elems):
         url = elem.get_attribute('src')
         f = io.BytesIO(request.urlopen(url).read())
         img = Image.open(f)
-        img.save('./sense/img{}.jpg'.format(index))
+        img.save('./test/img{}.jpg'.format(index))
         
 browser.quit()
